@@ -1,6 +1,6 @@
 # EMPLOYEE MANAGEMENT
 
-Python Flask Restful JWT Authentication with MongoDB
+This application has the ability to manage employees based on their role.
 
 
 ## Getting Started
@@ -12,20 +12,23 @@ and testing purposes.
 Before you can run this project you need a install python first on your operating system.
 You can download python [here](https://www.python.org/downloads/) and choose according to your operating system.
 n addition you also need a MongoDB NoSQL database and you can download 
-[here](https://www.mongodb.com/download-center/community).
+[here](https://www.mongodb.com/download-center/community).Also make sure that the mongo is running in your system after installing
+
+```
+systemctl start mongod
+```
 
 ### Installing
 
 First, clone this project from github using git command or git gui application like [fork](https://git-fork.com/).
 ```
-$ git clone https://github.com/hendrapaiton/EMPLOYEE MANAGEMENT.git
+git clone https://github.com/meghalrag/employee_managment_flask.git
 ```
 
 Making environment for project to isolation python installing libraries for this project only.
 ```
-pip install virtualenv
-virtualenv venv
-source venv/bin/activate
+conda create -n env python=3.10.9
+conda activate env
 ```
 
 Installing all libraries needed by this project using [pip](https://pypi.org/project/pip/).
@@ -84,21 +87,11 @@ curl -X DELETE localhost:5000/api/v1/user/<id> -H "Content-Type: application/jso
 
 ## Authors
 
-**Hendra Dwi Saputra** - *Initial work* - [hendrapaiton](https://github.com/hendrapaiton)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+**Meghalrag** - *Initial work* - [meghalrag](https://github.com/meghalrag)
 
 
 ## Acknowledgments
 
 1. My inspiration and More Tutorials [here](https://dev.to/paurakhsharma/flask-rest-api-part-0-setup-basic-crud-api-4650).
-Thanks to [Paurakh Sharma Humagain](https://dev.to/paurakhsharma) for great explanations.
 2. Flask JWT Extended [Documentation](https://flask-jwt-extended.readthedocs.io/en/stable/tokens_from_complex_object/)
-for _Role-Based Access Control_ (RBAC)
-3. Flask Mongo Engine [Documentation](http://docs.mongoengine.org/projects/flask-mongoengine/en/latest/),
-specially for _supported fields_.
+for _Role-Based Access Control_ (RBAC).

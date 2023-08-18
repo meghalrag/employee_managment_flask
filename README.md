@@ -39,7 +39,7 @@ pip install -r requirements.txt
 Make a configuration file with name *.env* with this configuration (_change as desired_).
 ```
 MONGODB_SETTINGS = { 'host': 'mongodb://localhost/EMPLOYEE MANAGEMENT' }
-JWT_SECRET_KEY = 'senggigibeach'
+JWT_SECRET_KEY = 'employeemanagementwillnotbreach'
 ```
 
 Setting the environment for this project.

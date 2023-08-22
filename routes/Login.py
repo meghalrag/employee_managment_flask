@@ -19,7 +19,10 @@ class LoginApi(Resource):
             # get body (json) from client request
             body = request.get_json()
             # get user object from database with condition username from request
-            user = User.objects.get(username=body.get('username'))
+            try:
+                user = User.objects.get(username=body.get('email_or_phone'))
+            except DoesNotExist:
+                user = User.objects.get(phone_number=body.get('email_or_phone'))
             # check password (encryption)
             authorized = user.check_password_hash(body.get('password'))
             # if check password (decryption) failed raise Error with code UnauthorizedError
@@ -33,6 +36,6 @@ class LoginApi(Resource):
             return {'token': access_token}, 200
         # if request failed or does not meet specifications
         except (UnauthorizedError, DoesNotExist):
-            raise UnauthorizedError
+            return {"error": "UnauthorizedError"}, 401 
         except Exception as e:
-            raise InternalServerError
+            return {"error": "InternalServerError"}, 500

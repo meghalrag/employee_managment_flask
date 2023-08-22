@@ -20,7 +20,7 @@ class MyTestCase(unittest.TestCase):
             "username": username,
             "password": password
         })
-        response = self.app.post('/api/v1/login', headers={"Content-Type": "application/json"}, data=payload)
+        response = self.app.post('/api/login', headers={"Content-Type": "application/json"}, data=payload)
         self.assertEqual(str, type(response.json['token']))
         self.assertEqual(200, response.status_code)
 

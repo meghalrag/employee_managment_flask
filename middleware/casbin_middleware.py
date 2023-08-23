@@ -28,6 +28,7 @@ class CasbinMiddleware(BaseHTTPMiddleware):
         IGNORE_LIST = [
             "docs",
             "login",
+            "logout",
             "register"
         ]
         uri_segments = uri.split("/")

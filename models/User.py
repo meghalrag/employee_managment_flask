@@ -37,3 +37,7 @@ class UserFileMapping(db.Document):
     user = db.ReferenceField('User', reverse_delete_rule=db.CASCADE)
     file_id = db.StringField(required=True)
     exported_date = db.DateTimeField(default=datetime.utcnow)
+
+
+class TokenBlacklist(db.Document):
+    jti = db.StringField(unique=True, required=True)

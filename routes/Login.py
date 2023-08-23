@@ -1,14 +1,14 @@
 import datetime
 
 # Import from system libraries
-from flask import request
-from flask_jwt_extended import create_access_token
+from flask import request, Response, json
+from flask_jwt_extended import create_access_token, get_raw_jwt, jwt_required
 from flask_restful import Resource
 from mongoengine import DoesNotExist
 
 # Import from application modules
 from errors import UnauthorizedError, InternalServerError
-from models.User import User
+from models.User import User, TokenBlacklist
 
 
 # Class Login API to load in Routes
@@ -39,3 +39,16 @@ class LoginApi(Resource):
             return {"error": "UnauthorizedError"}, 401 
         except Exception as e:
             return {"error": "InternalServerError"}, 500
+        
+
+class LogoutAPI(Resource):
+    #function to logout and black list token
+    @jwt_required
+    def post(self):
+        try:
+            jti = get_raw_jwt()['jti']
+            token = TokenBlacklist(jti=jti)
+            token.save()
+            return Response(json.dumps({"message":'Logout Successfully'}), mimetype='application/json', status=200)
+        except Exception as err:
+            return "Internal Server Error", 500

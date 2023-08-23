@@ -9,7 +9,7 @@ from middleware.casbin_middleware import CasbinMiddleware
 
 # Import from application modules
 from errors import errors
-from models.User import User, UserProfile
+from models.User import User, UserProfile, TokenBlacklist
 from models.db import initialize_db
 from routes.api import initialize_routes
 
@@ -28,6 +28,9 @@ jwt = JWTManager(app)
 # CORS enabled
 CORS(app)
 
+app.config['JWT_BLACKLIST_ENABLED'] = True
+app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = 'access'
+
 
 # Get roles for authenticated user
 @jwt.user_claims_loader
@@ -39,6 +42,11 @@ def add_claims_to_access_token(user):
 @jwt.user_identity_loader
 def user_identity_lookup(user):
     return user.username
+
+@jwt.token_in_blacklist_loader
+def check_if_token_in_blacklist(jwt_payload):
+    jti = jwt_payload['jti']
+    return TokenBlacklist.objects(jti=jti).first() is not None
 
 
 # Database Configuration Initialization

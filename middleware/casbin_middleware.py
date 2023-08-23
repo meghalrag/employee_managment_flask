@@ -32,7 +32,7 @@ class CasbinMiddleware(BaseHTTPMiddleware):
         ]
         uri_segments = uri.split("/")
         uri_segments = list(filter(lambda x: x != "", uri_segments))
-        if uri_segments[-1] in IGNORE_LIST:
+        if uri_segments[-1] in IGNORE_LIST or uri_segments[-2] in ["docs", "static"]:
             return call_next(request)
         else:
             try:

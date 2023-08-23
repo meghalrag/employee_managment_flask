@@ -44,7 +44,7 @@ def export_to_xlsx_and_save(users):
     worksheet.write('A6', 'Manager', bold)
     worksheet.write('A7', 'Joined Date', bold)
 
-    row = 1
+    # row = 1
     # for user in users:
     #     worksheet.write(row, 1, user.email)
     #     worksheet.write(row, 2, user.phone_number)

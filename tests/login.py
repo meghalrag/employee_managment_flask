@@ -14,8 +14,8 @@ class MyTestCase(unittest.TestCase):
 
     # Unit Test for Successful Login
     def test_successful_login(self):
-        username = "admin@nj.net"
-        password = "enje123"
+        username = "meghalrag@123.com"
+        password = "123"
         payload = json.dumps({
             "username": username,
             "password": password
